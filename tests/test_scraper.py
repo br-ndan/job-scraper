@@ -64,6 +64,21 @@ class JobScoringTests(unittest.TestCase):
 
 
 class CsvMigrationTests(unittest.TestCase):
+    def test_existing_log_skips_rows_without_job_id(self):
+        with tempfile.TemporaryDirectory() as directory:
+            data_file = Path(directory) / "postings.csv"
+            data_file.write_text(
+                "job_id,company,source,title\n"
+                ",Example,greenhouse,Incomplete posting\n"
+                "42,Example,greenhouse,Electrical Intern\n",
+                encoding="utf-8",
+            )
+
+            with patch.object(scraper, "DATA_FILE", data_file):
+                existing_ids = scraper.load_existing_postings()
+
+            self.assertEqual(existing_ids, {"greenhouse:Example:42"})
+
     def test_existing_log_is_migrated_to_include_score(self):
         with tempfile.TemporaryDirectory() as directory:
             data_file = Path(directory) / "postings.csv"
