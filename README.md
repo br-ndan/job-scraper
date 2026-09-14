@@ -5,7 +5,9 @@ postings, logs new ones to `data/postings.csv` and a seperate Google Sheet; noti
 and email using Gmail. Slack notifications can be added if it were to be set up. 
 Runs daily at certain time intervals via GitHub Actions.
 
-## Google Sheet link: `https://docs.google.com/spreadsheets/d/1xZ2o_mvW5pfAB1ui81F3Peh7Jq9WsA67FbrnrJysDXs/edit?usp=sharing`
+## Google Sheet link: 
+
+`https://docs.google.com/spreadsheets/d/1xZ2o_mvW5pfAB1ui81F3Peh7Jq9WsA67FbrnrJysDXs/edit?usp=sharing`
 
 ## Targeted Companies
 
