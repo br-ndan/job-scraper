@@ -34,10 +34,7 @@ jobs:
           GOOGLE_SHEETS_CREDENTIALS: ${{ secrets.GOOGLE_SHEETS_CREDENTIALS }}
           GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-<<<<<<< HEAD
           GEMINI_API_KEY_SECONDARY: ${{ secrets.GEMINI_API_KEY_SECONDARY }}
-=======
->>>>>>> 2c42fdb62eebdebd2ab0db5389e75532f4669810
         run: python scraper.py
 
       - name: Commit updated postings log
