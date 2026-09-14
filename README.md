@@ -71,10 +71,8 @@ Each run:
 
 - Greenhouse, Lever, and Workday are supported. Other ATS platforms and custom
   career sites need an additional fetcher.
-- Does not cover LinkedIn, Indeed, or Handshake — those block automated
-  scraping. Use their native "Job Alerts" features for those platforms instead.
-- GitHub Actions free tier includes 2,000 minutes/month for private repos,
-  which is far more than this lightweight daily job needs.
 - If a company uses iCIMS or a custom site instead, the 
 script won't cover them (those don't expose a simple public API). It would require 
 a separate scraper tailored to that site's HTML structure.
+- Does not cover LinkedIn, Indeed, or Handshake.
+- GitHub Actions free tier includes 2,000 minutes/month for private repos.
