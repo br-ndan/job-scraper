@@ -16,20 +16,30 @@ import time
 from email.mime.text import MIMEText
 from html import unescape
 from pathlib import Path
+<<<<<<< HEAD
 import requests
 from google import genai
 from google.genai import types
 from pydantic import BaseModel, Field
+=======
+ 
+import requests
+>>>>>>> 2c42fdb62eebdebd2ab0db5389e75532f4669810
  
 # ---------------------------------------------------------------------------
 # CONFIG — edit this section to customize your search
 # 
+<<<<<<< HEAD
 # Version 3 = Gemini API integration for AI evaluation.
 # Version 3.1 = A Gemini 503 UNAVAILABLE now temporarily removes that model 
 # from rotation and immediately tries the next configured model, just like a 
 # 429 rate-limit response. It also handles transient 500/502/504 errors.
 # Also added Gemini 3.6 Flash model.
 # Version 3.2 = Secondary API key's models are utilized when primary routes are busy
+=======
+# Version 2.5 = Converted list of companies to single json file. startup validation for the ATS entriese. Updated read me
+# Version 2.5.1 = New companies added, added 3 retry attempts for connection failes and other errors.
+>>>>>>> 2c42fdb62eebdebd2ab0db5389e75532f4669810
 # ---------------------------------------------------------------------------
 
 COMPANIES_FILE = Path(__file__).with_name("companies.json")
@@ -82,6 +92,7 @@ def load_companies(companies_file=COMPANIES_FILE):
 
 
 COMPANIES = load_companies()
+<<<<<<< HEAD
 
 
 # ---------------------------------------------------------------------------
@@ -90,6 +101,9 @@ COMPANIES = load_companies()
 # ---------------------------------------------------------------------------
 
 
+=======
+ 
+>>>>>>> 2c42fdb62eebdebd2ab0db5389e75532f4669810
 # A role-level keyword is required before a job can be considered. Scores then
 # distinguish a relevant engineering opportunity from a generic internship.
 ROLE_KEYWORDS = {
@@ -182,6 +196,7 @@ EXCLUDE_KEYWORDS = [
 DATA_FILE = Path(__file__).parent / "data" / "postings.csv"
 MAX_REQUEST_ATTEMPTS = 3
 RETRYABLE_STATUS_CODES = {429, 500, 502, 503, 504}
+<<<<<<< HEAD
 
 # Gemini model routing.  Lite models are preferred because their higher RPM
 # limit makes them the best default for the large number of small evaluations
@@ -196,6 +211,8 @@ GEMINI_MODEL_LIMITS = (
     ("gemini-3.8-flash", 5),
 )
 DEFAULT_GEMINI_RATE_LIMIT_COOLDOWN_SECONDS = 60
+=======
+>>>>>>> 2c42fdb62eebdebd2ab0db5389e75532f4669810
 POSTING_FIELDS = [
     "job_id",
     "company",
@@ -438,6 +455,7 @@ def evaluate_job(title, description=""):
     }
 
 
+<<<<<<< HEAD
 # ---------------------------------------------------------------------------
 # SCRAPING LOGIC - Gemini API for Dedicated Job Boards
 # ---------------------------------------------------------------------------
@@ -652,6 +670,8 @@ GEMINI_PREFILTER_SCORE = 15
 # ---------------------------------------------------------------------------
 
 
+=======
+>>>>>>> 2c42fdb62eebdebd2ab0db5389e75532f4669810
 def score_job(title, description=""):
     """Return a job's total score, or ``None`` when it is not eligible."""
     evaluation = evaluate_job(title, description)
@@ -841,6 +861,7 @@ def main():
         else:
             print(f"  [!] Unsupported platform '{company['platform']}' for {company['name']}, skipping.")
 
+<<<<<<< HEAD
     existing_ids = load_existing_postings()
     new_postings = []
     for job in all_jobs:
@@ -871,6 +892,18 @@ def main():
     print(f"Found {len(new_postings)} new posting(s) matching evaluation filters.")
 
     # new_postings = [j for j in matched if posting_key(j) not in existing_ids]
+=======
+    matched = []
+    for job in all_jobs:
+        evaluation = evaluate_job(job["title"], job.get("description", ""))
+        if evaluation is not None and evaluation["match_score"] >= MIN_MATCH_SCORE:
+            job.update(evaluation)
+            matched.append(job)
+    print(f"Found {len(matched)} postings matching keyword filters.")
+ 
+    existing_ids = load_existing_postings()
+    new_postings = [j for j in matched if posting_key(j) not in existing_ids]
+>>>>>>> 2c42fdb62eebdebd2ab0db5389e75532f4669810
  
     if not new_postings:
         print("No new postings since last run.")

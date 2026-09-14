@@ -128,6 +128,7 @@ class RequestRetryTests(unittest.TestCase):
         sleep.assert_not_called()
 
 
+<<<<<<< HEAD
 class GeminiFailoverTests(unittest.TestCase):
     def test_503_unavailable_routes_to_the_next_model(self):
         router = scraper.GeminiModelRouter(
@@ -193,5 +194,7 @@ class GeminiFailoverTests(unittest.TestCase):
         secondary_client.models.generate_content.assert_called_once()
 
 
+=======
+>>>>>>> 2c42fdb62eebdebd2ab0db5389e75532f4669810
 if __name__ == "__main__":
     unittest.main()

@@ -61,6 +61,7 @@ and add any of these:
 You can set up just one of these, both, or neither (the postings will still get
 logged to the spreadsheet either way, you just won't get pinged).
 
+<<<<<<< HEAD
 **For Gemini job evaluation (optional):**
 - `GEMINI_API_KEY` — the primary Gemini API key.
 - `GEMINI_API_KEY_SECONDARY` — an optional key from a separate Google Cloud
@@ -69,6 +70,8 @@ logged to the spreadsheet either way, you just won't get pinged).
   models. Do not use a second key from the same project: Gemini rate limits
   apply per project.
 
+=======
+>>>>>>> 2c42fdb62eebdebd2ab0db5389e75532f4669810
 ## Step 4: Test it manually
 
 1. Go to your repo's **Actions** tab.
